@@ -12,50 +12,104 @@ https://pyhht.readthedocs.io/en/latest/tutorials/hilbert_view_nonlinearity.html
 
 
 """
+
 # In[Init signals]
 import numpy as np
+# import matplotlib
 import matplotlib.pyplot as plt
 from scipy.signal import hilbert
 np.random.seed(1615552020)
 
 from EMD import EMD, plot_imfs, max_min_env
 
-N = 700
+def init():
+    N = 1000
 
-t = np.arange(0,N)
-signal1 = np.sin(t * 0.1)
-signal2 = np.sin(t * 0.2)
-noise = np.random.uniform(-1,1,N)
+    t = np.arange(0,N)
+    signal1 = np.sin(t * 0.06)
+    signal2 = np.sin(t * 0.08)
+    noise = np.random.uniform(-1,1,N)
 
-# plt.plot(t, noise)
-# plt.plot(t, signal)
+    spn = signal1+noise
+    smn = signal1*noise
+    sps = signal1 * signal2
 
-spn = signal1+noise
-smn = signal1*noise
+    return smn
 
-sps = signal1 * signal2
-
-signal = sps
+signal = init()
 
 
-plt.plot(t, signal, 'k-', label='data')
+# In[ First IMF ]
+plt.style.use('dark_background')
 
-imfs = EMD(signal, 5)
-plot_imfs(imfs)
+# Data plot
+fig, ax = plt.subplots(1,2)
+ax[0].plot(signal, 'w-', label='data')
+ax[0].grid(linestyle='--', color=([0.2,0.2,0.2]))
 
-# max_envs = []
-# for imf in imfs:
-#     max_env, _ = max_min_env(imf)
-#     max_envs += [max_env]
 
-# new_imfs = []
-# for env in max_envs:
-#     new_imfs += EMD(env,5)
+imfs = EMD(signal, 3)
 
-# plot_imfs(new_imfs)
+# IMF plot
+for i in range(len(imfs)):
+    ax[1].plot(imfs[i], label=str(i))
+ax[1].grid(linestyle='--', color=([0.2,0.2,0.2]))
+
+plt.legend()
+
+
+# In[ Second IMF ]
+max_envs = []
+for imf in imfs:
+    max_env, _ = max_min_env(imf)
+    max_envs += [max_env]
+
+new_imfs = []
+for env in max_envs:
+    new_imfs += EMD(env, 3)
+
+
+for imf in new_imfs:
+    plt.plot(imf)
+plt.grid(linestyle='--', color=([0.2,0.2,0.2]))
+
+
+# In[ Inst freq for first IMF ]
+inst_freq = []
+for imf in imfs:
+    h = hilbert(imf)
+    omega = np.unwrap(np.angle(h))
+    inst_freq += [np.diff(omega)]
+
+plt.plot(inst_freq[0], imfs[0][:-1], '.')
+plt.xlabel('Instant freq')
+plt.ylabel('IMF')
+
+# In[ 3D plotter ]
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+i = 0
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+ax.scatter(np.arange(0,len(imfs[i])-1),
+           inst_freq[i],
+           imfs[i][:-1],
+           marker='p')
+
+ax.set_xlabel('Time')
+ax.set_ylabel('Instant frequancy')
+ax.set_zlabel('IMF')
+
+
+
 
 # In[]
+t = np.arange(0,len(signal))
 inst_freq = []
+
 for imf in imfs:
     h = hilbert(imf)
     omega = np.unwrap(np.angle(h))
@@ -82,21 +136,16 @@ for n in range(3):
 z = np.array(z).T
 im = plt.contourf(z)
 
-# In[]
-h = hilbert(imfs[0])
-plt.plot(np.real(h), np.imag(h))
-plt.xlim(-2,2)
-plt.ylim(-2,2)
+cbar = fig.colorbar(im, ticks=[-1, 0, 1])
+cbar.ax.set_yticklabels(['< -1', '0', '> 1'])
 
-omega = np.unwrap(np.angle(h))
-f_inst = np.diff(omega)
-plt.figure()
-plt.plot(t[1:], f_inst)
+plt.colorbar()
+plt.show()
+
+
 
 
 # In[Hilbert spectral analisys]
-
-
 # Compute Hilbert transform
 h0 = hilbert(imfs[0])
 plt.plot(np.real(h0), np.imag(h0))
