@@ -18,30 +18,63 @@ import numpy as np
 # import matplotlib
 import matplotlib.pyplot as plt
 from scipy.signal import hilbert
+plt.style.use('bmh')
 np.random.seed(1615552020)
 
 from EMD import EMD, plot_imfs, max_min_env
+
+def plt_signal(signal, l, c):
+    plt.plot(signal, c, label=l, linewidth=1)
+    plt.xlabel('time')
+    plt.ylabel('amplitude')
+    plt.xlim(0,1000)
+    plt.ylim(-1.5,1.5)
+    plt.legend(loc='upper right')
 
 def init():
     N = 1000
 
     t = np.arange(0,N)
-    signal1 = np.sin(t * 0.06)
+    signal1 = np.sin(t * 0.02)
     signal2 = np.sin(t * 0.08)
-    noise = np.random.uniform(-1,1,N)
+    noise = np.random.uniform(-0.5,0.5,N)
 
     spn = signal1+noise
     smn = signal1*noise
     sps = signal1 * signal2
 
-    return smn
+    # plt_signal(signal1,'Signal')
+    # plt_signal(noise, 'Gaussian white noise', 'g')
+    # plt_signal(spn, 'Signal + Noise', 'k')
+    # plt_signal(smn, 'Signal * Noise', 'k')
 
-signal = init()
+    return spn, smn, signal1
+
+
+spn, smn, signal = init()
+
+
+
+# In[ Power Spectral Density ]
+dt = 0.01
+nfft = 1024
+plt.psd(spn, nfft, 1/dt, label='Signal + Noise', c='#FF8E40')
+plt.psd(signal, nfft, 1/dt,label='Signal', ls=':',c='#9282FF')
+plt.xscale('log')
+plt.ylim(-64, 9)
+
+plt.legend()
+
+plt.figure()
+plt.psd(smn, nfft, 1/dt, label='Signal * Noise',c='#FF8E40')
+plt.psd(signal, nfft, 1/dt,label='Signal', ls=':', c='#9282FF')
+plt.xscale('log')
+plt.ylim(-64, 9)
+
+plt.legend()
 
 
 # In[ First IMF ]
-plt.style.use('dark_background')
-
 # Data plot
 fig, ax = plt.subplots(1,2)
 ax[0].plot(signal, 'w-', label='data')
@@ -103,7 +136,17 @@ ax.set_xlabel('Time')
 ax.set_ylabel('Instant frequancy')
 ax.set_zlabel('IMF')
 
+# In[ FFT ]
 
+T = 1.0 / 250.0
+N = 1000
+
+spn_fft = np.fft.fft(spn)
+smn_fft = np.fft.fft(smn)
+
+xf = np.linspace(0.0, 1.0/(2.0*T), N//2)
+plt.plot(xf, 2.0/N * np.abs(spn_fft[:N//2]))
+plt.plot(xf, 2.0/N * np.abs(smn_fft[:N//2]))
 
 
 # In[]
