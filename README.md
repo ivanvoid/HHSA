@@ -8,7 +8,7 @@ We can add them together or multiply them.
 After addition we can still see sine wave, but after multiplication it's not so clear but we still can guess sine pattern.  
 <img src="github/signal+noise.png" width=400> <img src="github/signal*noise.png" width=400>
 
-We can see how the Fourier transform(FFT)to cope with the transformation of these signals.
+We can see how the Fourier transform (FFT) to cope with the transformation of these signals.
 We will use power spectral density (PSD) for it, computation of PSD is done directly by FFT. PSD shows at which frequencies variations are strong and at which frequencies variations are weak.  
 We can clearly see sine wave for additive signal, but for multiplicative original sine wave complitly gone.  
 <img src="github/psd_signal+noise.png" width=400> <img src="github/psd_signal*noise.png" width=400>
