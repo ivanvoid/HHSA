@@ -13,7 +13,7 @@ We will use power spectral density (PSD) for it, computation of PSD is done dire
 We can clearly see sine wave for additive signal, but for multiplicative original sine wave complitly gone.  
 <img src="github/psd_signal+noise.png" width=400> <img src="github/psd_signal*noise.png" width=400>
 
-
+---
 TODO:
 * Figure out the Figure4b (HSA)
 * Figure out FM/AM and something, Figure6c
@@ -22,5 +22,5 @@ TODO:
 Done:
 * EMD ([paper](https://www.researchgate.net/publication/221534245_Empirical_Mode_Decomposition_-_an_introduction))
 
-
+---
 *Sidenote: I'm just a student who really like HHSA and trying to understand it*
