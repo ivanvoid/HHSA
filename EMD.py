@@ -2,10 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat Mar 21 11:45:11 2020
-
 @author: veax-void
-
-
 """
 
 import numpy as np

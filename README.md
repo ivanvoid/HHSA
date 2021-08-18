@@ -1,5 +1,10 @@
 # Holo-Hilbert spectral analysis
-[Paper](https://www.researchgate.net/publication/297661784_On_Holo-Hilbert_spectral_analysis_a_full_informational_spectral_representation_for_nonlinear_and_non-stationary_data) DOI: 10.1098/rsta.2015.0206
+[Paper: DOI: 10.1098/rsta.2015.0206](https://www.researchgate.net/publication/297661784_On_Holo-Hilbert_spectral_analysis_a_full_informational_spectral_representation_for_nonlinear_and_non-stationary_data) 
+
+## How to use
+Explane
+
+## Showcase
 
 We have two signals one is sine wave, another just white noise.  
 We can add them together or multiply them.  
@@ -13,14 +18,11 @@ We will use power spectral density (PSD) for it, computation of PSD is done dire
 We can clearly see sine wave for additive signal, but for multiplicative original sine wave complitly gone.  
 <img src="github/psd_signal+noise.png" width=400> <img src="github/psd_signal*noise.png" width=400>
 
----
-TODO:
-* Figure out the Figure4b (HSA)
-* Figure out FM/AM and something, Figure6c
-   
+## Requirements
+- numpy
+- scipy
 
-Done:
-* EMD ([paper](https://www.researchgate.net/publication/221534245_Empirical_Mode_Decomposition_-_an_introduction))
-
----
-*Sidenote: I'm just a student who really like HHSA and trying to understand it*
+## TODO
+- [ ] Figure out the Figure4b (HSA)
+- [ ] Figure out FM/AM and something, Figure6c
+- [x] EMD ([paper](https://www.researchgate.net/publication/221534245_Empirical_Mode_Decomposition_-_an_introduction))

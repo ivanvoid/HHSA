@@ -4,9 +4,7 @@
 Created on Sat Mar 21 16:15:55 2020
 
 @author: veax-void
-
 https://pyhht.readthedocs.io/en/latest/tutorials/hilbert_view_nonlinearity.html
-
 
 !!! Under construction !!!
 
@@ -184,8 +182,6 @@ cbar.ax.set_yticklabels(['< -1', '0', '> 1'])
 
 plt.colorbar()
 plt.show()
-
-
 
 
 # In[Hilbert spectral analisys]
