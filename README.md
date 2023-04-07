@@ -2,7 +2,7 @@
 [Paper: DOI: 10.1098/rsta.2015.0206](https://www.researchgate.net/publication/297661784_On_Holo-Hilbert_spectral_analysis_a_full_informational_spectral_representation_for_nonlinear_and_non-stationary_data) 
 
 ## How to use
-Explane
+Run Holo-Hilbert-SA.ipynb code. 
 
 ## Showcase
 
@@ -18,11 +18,16 @@ We will use power spectral density (PSD) for it, computation of PSD is done dire
 We can clearly see sine wave for additive signal, but for multiplicative original sine wave complitly gone.  
 <img src="github/psd_signal+noise.png" width=400> <img src="github/psd_signal*noise.png" width=400>
 
+After applying HHSA transform we can get next date represenration for signal, that is actually 3D. We collapse it alonge the time axis. Here Y axis should be ampletude and X axis frequency, but I not rely sure how to interprete those values myself.
+ 
+<img src="github/HHSA_add.png" width=400> <img src="github/HHSA_mult.png" width=400>
+
+
 ## Requirements
 - numpy
 - scipy
 
 ## TODO
-- [ ] Figure out the Figure4b (HSA)
-- [ ] Figure out FM/AM and something, Figure6c
+- [x] Figure out the Figure4b (HSA)
+- [x] Figure out FM/AM, Figure6c (kinda)
 - [x] EMD ([paper](https://www.researchgate.net/publication/221534245_Empirical_Mode_Decomposition_-_an_introduction))
