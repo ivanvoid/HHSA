@@ -95,20 +95,3 @@ def plot_imfs(imfs):
     for i in range(len(imfs)):
         ax[i].plot(imfs[i])
     fig.tight_layout()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
