@@ -2,7 +2,7 @@
 [Paper: DOI: 10.1098/rsta.2015.0206](https://www.researchgate.net/publication/297661784_On_Holo-Hilbert_spectral_analysis_a_full_informational_spectral_representation_for_nonlinear_and_non-stationary_data) 
 
 ## How to use
-Run Holo-Hilbert-SA.ipynb code. 
+Run `Holo-Hilbert-SA.ipynb` code. 
 
 ## Showcase
 
@@ -24,10 +24,16 @@ After applying HHSA transform we can get next date represenration for signal, th
 
 
 ## Requirements
-- numpy
-- scipy
+Install requerements with a command:
+```
+pip install numpy matplotlib scipy tqdm
+```
 
 ## TODO
 - [x] Figure out the Figure4b (HSA)
 - [x] Figure out FM/AM, Figure6c (kinda)
 - [x] EMD ([paper](https://www.researchgate.net/publication/221534245_Empirical_Mode_Decomposition_-_an_introduction))
+
+---
+If you have any suggestions leave a pull request or an issue.
+Thank you.
